@@ -9,6 +9,7 @@ function gera_bloco(numero_posicoes, conjuntos){
 
 
     for (var i = 0; i < conjuntos; i++){
+        var arrayAux = [];
         for(j = 0; j < numero_posicoes; j++){
             html += "<tr>";
             html += "<td>Linha "+auxLinhas+"</td>";
@@ -20,7 +21,9 @@ function gera_bloco(numero_posicoes, conjuntos){
             
             html += "</tr>";
             auxLinhas++;
+            arrayAux.push(auxLinhas);
         }
+        arrayBlocos.push(arrayAux);
     }
 
     return $("#conteudo").html(html);
