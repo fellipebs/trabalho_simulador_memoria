@@ -10,7 +10,18 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="funcoes.js"></script>
 </head>
+
+<style>
+    .conj{
+        top: 24px;
+        font-size: 18px;
+        position: relative;
+        color: red;
+        font-weight: bold;
+    }
+</style>
 <body>
+    
    
 <div class="jumbotron text-center">
     <center>
@@ -19,7 +30,7 @@
 </div>
     <div class="container">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-7">
                 <form  class="form-inline">
                     <center>
                     <label class="mr-sm-2">Memória</label>
@@ -30,58 +41,52 @@
                     <input type="number" min="0" class="form-control mb-2 mr-sm-2" placeholder="" id="linha">
                     <label class="mr-sm-2">N</label>
                     <input type="number" min="0" class="form-control mb-2 mr-sm-2" placeholder="" id="n">
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                            Selecionar Metodo
-                        </button>
-                        <div class="dropdown-menu">
-                            <a id="lru" class="dropdown-item" href="#">LRU</a>
-                            <a id="lfu" class="dropdown-item" href="#">LFU</a>
-                            <a id="fifo" class="dropdown-item" href="#">FIFO</a>
-                        </div>
-                    </div>
+                    <label class="mr-sm-2">Selecionar Metodo</label>
+                    <label class="radio-inline"><input type="radio" name="fcc" id="lru" checked>LRU</label>
+                    <label class="radio-inline"><input type="radio" name="fcc" id="lfu">LFU</label>
+                    <label class="radio-inline"><input type="radio" name="fcc" id="fifo">FIFO</label>
                     </center>
                 </form> 
             </div>
-            <div class="col-sm-6">
-                <h2>Striped Rows</h2>
-                    <p>The .table-striped class adds zebra-stripes to a table:</p>            
+            <div class="col-sm-5">      
+                <center>
+                    <form  class="form-inline">
+                        <label class="mr-sm-2">Sequência</label>
+                        <input type="number" style="width:169px" min="0" class="form-control mb-2 mr-sm-2" placeholder="" id="sequencia">
+                        <button type="button" class="btn btn-info">Confirmar</button>
+                    </form>
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
+                            <th>Linhas</th>
+                            <th>Blocos</th>
+                            <th style="border:none;"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                        </tr>
-                        <tr>
-                            <td>Mary</td>
-                            <td>Moe</td>
-                        </tr>
-                        <tr>
-                            <td>July</td>
-                            <td>Dooley</td>
-                        </tr>
+                            <tr>
+                                <td>Linha X</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Linha X</td>
+                                <td></td>
+                                <td style="border:none;"><span class="conj">Conjunto X</span></td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Linha X</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Linha X</td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
+                </center>
             </div>
         </div>
     </div>
-    
-   
-
-  
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            
-        </div>
-    </div>
-</div>
-
 </body>
 </html>
