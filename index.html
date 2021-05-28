@@ -4,6 +4,7 @@
 <head>
     <title>Trabai</title>
     <meta charset="utf-8">
+    <link href="styles.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -11,23 +12,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="funcoes.js"></script>
 </head>
+<script>
+    var arrayBlocos = [];
 
-<style>
-    .conj {
-        top: 24px;
-        font-size: 18px;
-        position: relative;
-        color: red;
-        font-weight: bold;
-    }
-</style>
-
+</script>
 <body>
-
-
     <div class="jumbotron text-center">
         <center>
-            <h3>Metodo selecionado: XXX</h3>
+            <p>SIMULADOR MEMORIA CACHE</p>
+            <p> POWER BY FELLIPE / MIKAEL / GUSTAVO :)</p>
         </center>
     </div>
     <div class="container">
@@ -47,6 +40,7 @@
                         <label class="radio-inline"><input type="radio" name="fcc" id="lru" checked>LRU</label>
                         <label class="radio-inline"><input type="radio" name="fcc" id="lfu">LFU</label>
                         <label class="radio-inline"><input type="radio" name="fcc" id="fifo">FIFO</label>
+                        <button type="button" class="button" onclick="gera_bloco($('#linha').val(), $('#n').val())">Confirmar</button>
                     </center>
                 </form>
             </div>
@@ -56,7 +50,7 @@
                         <label class="mr-sm-2">Sequência</label>
                         <input type="number" style="width:169px" min="0" class="form-control mb-2 mr-sm-2"
                             placeholder="" id="sequencia">
-                        <button type="button" class="btn btn-info" onclick="gera_bloco($('#linha').val(), $('#n').val())">Confirmar</button>
+                        <button type="button" class="button button2" onclick="">Carregar</button>
                     </form>
                     <table class="table table-striped">
                         <thead>
@@ -76,8 +70,3 @@
 </body>
 
 </html>
-
-<script>
-    var arrayBlocos = [];
-
-</script>
