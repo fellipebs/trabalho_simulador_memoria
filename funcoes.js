@@ -56,7 +56,7 @@ function alimenta_bloco(sequencia){
         var aux = arrayBlocos[resultado].length;
         var i = 0;
         while(aux != arrayBlocos[resultado].length + numero_posicoes){
-            if(arrayAuxiliarValores[arrayBlocos[resultado][i]] == -1){
+            if(arrayAuxiliarValores[arrayBlocos[resultado][i]] == -1 && !arrayAuxiliarValores.includes(sequencia)){
                 arrayAuxiliarValores[arrayBlocos[resultado][i]] = sequencia;
                 for(var j = 0; j < arrayAuxiliarValores.length; j++){
                     if(arrayAuxiliarValores[j] != -1)
@@ -68,7 +68,7 @@ function alimenta_bloco(sequencia){
             aux++;
         }
 
-        if(aux == arrayBlocos[resultado].length + numero_posicoes){
+        if(aux == arrayBlocos[resultado].length + numero_posicoes  && !arrayAuxiliarValores.includes(sequencia)){
             var aux = arrayMarcadorFIFO[resultado];
             if(aux < numero_posicoes){
                 //inicio do conjunto 
