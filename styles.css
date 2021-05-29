@@ -1,35 +1,32 @@
 html{
   width:100%;
 }
-.conj {
-  top: 75px;
-  left: 215px;
-  position: relative;
-  color: red;
-  font-weight: bold;
-}
+
 td{
   border-style: solid;
   border-width: small;
 }
+
 .button{ 
   background-color: darkgray;
   border-radius: 12px;
   padding: 12px 28px;
   width: 99%;
 }
+
 .button2{
   border-radius: 12px;
   padding: 12px 28px;
   width: 35%;
 }
+
 body{
   background: #000;
   padding-top: 10px;
 } 
 
 p{
-  color: black; 
+  color: lime; 
   font-family: "Courier";
   font-size: 20px;
   margin: 10px 0 0 10px;
@@ -37,6 +34,20 @@ p{
   overflow: hidden;
   width: 30em;
   animation: type 4s steps(60, end); 
+}
+
+#jumbo{
+background-color: black;
+width: 100%;
+top: 0%;
+}
+
+#conj{
+  margin-top: 16%;
+  left: 93%;
+  position: absolute;
+  color: red;
+  font-weight: bold;
 }
 
 p:nth-child(2){

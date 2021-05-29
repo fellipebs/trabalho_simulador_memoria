@@ -16,7 +16,7 @@ function gera_bloco(numero_posicoes, conjuntos){
             if(j != 0){
                 html += "<td><span id='bloco"+auxLinhas+"'></span></td>";
             }else{
-                html += "<td><span id='bloco"+auxLinhas+"'></span><span class='conj'>Conjunto "+i+"</span></td>";
+                html += "<td><span id='bloco"+auxLinhas+"'></span><span class='conj' id='conj'>Conjunto "+i+"</span></td>";
             }
             
             html += "</tr>";
