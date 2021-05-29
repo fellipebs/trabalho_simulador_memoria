@@ -43,8 +43,8 @@
                         <label class="mr-sm-2">N</label>
                         <input type="number" min="0" class="form-control mb-2 mr-sm-2" placeholder="" id="n" value='4'>
                         <label class="mr-sm-2">Selecionar Metodo</label>
-                        <label class="radio-inline"><input type="radio" name="fcc" id="fifo" value="fifo">FIFO</label>
-                        <label class="radio-inline"><input type="radio" name="fcc" id="lru" value="lru" checked>LRU</label>
+                        <label class="radio-inline"><input type="radio" name="fcc" id="fifo" value="fifo" checked>FIFO</label>
+                        <label class="radio-inline"><input type="radio" name="fcc" id="lru" value="lru">LRU</label>
                         <label class="radio-inline"><input type="radio" name="fcc" id="lfu" value="lfu">LFU</label>
                         <button type="button" class="button" onclick="gera_bloco($('#linha').val(), $('#n').val())">Confirmar</button>
                         <label>Logs de inserção:</label>
