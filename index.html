@@ -16,6 +16,8 @@
     var arrayBlocos = [];
     var arrayAuxiliarValores = [];
     var arrayMarcadorFIFO = [];
+    var arrayMarcadorLRU = [];
+    var marcaUsoLRU = 0;
 
 </script>
 <body> 
@@ -30,7 +32,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-7">
-                <form class="form-inline">
+                <div class="form-inline">
                     <center>
                         <label class="mr-sm-2">Memória</label>
                         <input type="number" min="0" class="form-control mb-2 mr-sm-2" placeholder="" id="memoria">
@@ -41,23 +43,23 @@
                         <label class="mr-sm-2">N</label>
                         <input type="number" min="0" class="form-control mb-2 mr-sm-2" placeholder="" id="n" value='4'>
                         <label class="mr-sm-2">Selecionar Metodo</label>
-                        <label class="radio-inline"><input type="radio" name="fcc" id="fifo" value="fifo" checked>FIFO</label>
-                        <label class="radio-inline"><input type="radio" name="fcc" id="lru" value="lru">LRU</label>
+                        <label class="radio-inline"><input type="radio" name="fcc" id="fifo" value="fifo">FIFO</label>
+                        <label class="radio-inline"><input type="radio" name="fcc" id="lru" value="lru" checked>LRU</label>
                         <label class="radio-inline"><input type="radio" name="fcc" id="lfu" value="lfu">LFU</label>
                         <button type="button" class="button" onclick="gera_bloco($('#linha').val(), $('#n').val())">Confirmar</button>
                         <label>Logs de inserção:</label>
                         <textarea id='logs'></textarea>
                     </center>
-                </form>
+                </div>
             </div>
             <div class="col-sm-5">
                 <center>
-                    <form class="form-inline">
+                    <div class="form-inline">
                         <label class="mr-sm-2">Sequência</label>
                         <input type="number" style="width:169px" min="0" class="form-control mb-2 mr-sm-2"
                             placeholder="" id="sequencia">
                         <button type="button" class="button button2" onclick="alimenta_bloco($('#sequencia').val())">Carregar</button>
-                    </form>
+                    </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
