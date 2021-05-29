@@ -27,6 +27,10 @@ function gera_bloco(numero_posicoes, conjuntos){
         arrayBlocos.push(arrayAux);
     }
 
+
+    for(var i = 0; i < conjuntos; i++)
+        arrayMarcadorFIFO[i] = 0;
+
     return $("#conteudo").html(html);
 }
 
@@ -54,8 +58,6 @@ function alimenta_bloco(sequencia){
         while(aux != arrayBlocos[resultado].length + numero_posicoes){
             if(arrayAuxiliarValores[arrayBlocos[resultado][i]] == -1){
                 arrayAuxiliarValores[arrayBlocos[resultado][i]] = sequencia;
-                // alert(arrayAuxiliarValores[arrayBlocos[resultado][i]]);
-                // $("#bloco"+arrayAuxiliarValores[arrayBlocos[resultado][i]]).text(sequencia);
                 for(var j = 0; j < arrayAuxiliarValores.length; j++){
                     if(arrayAuxiliarValores[j] != -1)
                         $("#bloco"+j).text(arrayAuxiliarValores[j]);
@@ -65,10 +67,30 @@ function alimenta_bloco(sequencia){
             i++;
             aux++;
         }
-        
-        arrayBlocos[resultado]
 
-        
+        if(aux == arrayBlocos[resultado].length + numero_posicoes){
+            var aux = arrayMarcadorFIFO[resultado];
+            if(aux < numero_posicoes){
+                //inicio do conjunto 
+                var aux2 = 0
+                for (var i = resultado * numero_posicoes; i < (resultado * numero_posicoes) + numero_posicoes; i++){
+                    if(i == (aux + resultado * numero_posicoes)){
+                        arrayMarcadorFIFO[resultado] = aux2;
+                        arrayAuxiliarValores[i] = sequencia;
+                        $("#bloco"+i).text(arrayAuxiliarValores[i]);
+                    }
+                    aux2++;
+                }
+            }else{
+                arrayMarcadorFIFO[resultado] = 0;
+                arrayAuxiliarValores[resultado * numero_posicoes] = sequencia;
+                $("#bloco"+resultado * numero_posicoes).text(arrayAuxiliarValores[resultado * numero_posicoes]);
+            }
+              
+            
+            arrayMarcadorFIFO[resultado]++;
+        }
+               
 
         }else if(metodo == "lru"){
             
