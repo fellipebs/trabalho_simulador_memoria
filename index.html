@@ -16,21 +16,23 @@
     var arrayBlocos = [];
     var arrayAuxiliarValores = [];
     var arrayMarcadorFIFO = [];
+    var arrayMarcadorLRU = [];
+    var marcaUsoLRU = 0;
 
 </script>
 <body> 
     <div class="jumbotron jumbotron-fluid" id="jumbo">
         <div class="container">
             <center>
-                <p>SIMULADOR MEMORIA CACHE</p>
-                <p> POWER BY FELLIPE / MIKAEL / GUSTAVO :)</p>
+                <p>SIMULADOR MEMÓRIA CACHE</p>
+                <p> POWERED BY FELLIPE / MIKAEL / GUSTAVO :)</p>
             </center>
         </div>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-sm-7">
-                <form class="form-inline">
+                <div class="form-inline">
                     <center>
                         <label class="mr-sm-2">Memória</label>
                         <input type="number" min="0" class="form-control mb-2 mr-sm-2" placeholder="" id="memoria">
@@ -48,16 +50,16 @@
                         <label>Logs de inserção:</label>
                         <textarea id='logs'></textarea>
                     </center>
-                </form>
+                </div>
             </div>
             <div class="col-sm-5">
                 <center>
-                    <form class="form-inline">
+                    <div class="form-inline">
                         <label class="mr-sm-2">Sequência</label>
                         <input type="number" style="width:169px" min="0" class="form-control mb-2 mr-sm-2"
                             placeholder="" id="sequencia">
                         <button type="button" class="button button2" onclick="alimenta_bloco($('#sequencia').val())">Carregar</button>
-                    </form>
+                    </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
