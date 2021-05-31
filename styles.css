@@ -7,17 +7,12 @@ td{
   border-width: small;
 }
 
-.button{ 
+#btn1, #btn2{ 
   background-color: darkgray;
   border-radius: 12px;
   padding: 12px 28px;
-  width: 99%;
-}
-
-.button2{
-  border-radius: 12px;
-  padding: 12px 28px;
-  width: 35%;
+  width: auto;
+  text-align: center;
 }
 
 body{
@@ -32,12 +27,17 @@ p{
   margin: 10px 0 0 10px;
   white-space: nowrap;
   overflow: hidden;
-  width: 30em;
-  animation: type 4s steps(60, end); 
+  width: 40em;
+  animation: type 4s steps(244, end); 
+}
+
+#spjm{
+  animation: blink 1s infinite;
 }
 
 #jumbo{
 background-color: black;
+border-radius: 35px;
 }
 
 #conj{
@@ -48,8 +48,9 @@ background-color: black;
   font-weight: bold;
 }
 
+
 p:nth-child(2){
-  animation: type2 8s steps(60, end);
+  animation: type2 8s steps(244, end);
 }
 
 p a{
@@ -69,8 +70,4 @@ p a{
 
 @keyframes blink{
   to{opacity: .0;}
-}
-
-::selection{
-  background: black;
 }
