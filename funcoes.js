@@ -101,6 +101,7 @@ function alimenta_bloco(sequencia){
                         aux2++;
                     }
                 }else{
+                    //Caso o número seja maior que a ultima posição, ocorre essa validação para voltar com o mesmo para 0
                     arrayMarcadorFIFO[resultado] = 0;
                     arrayAuxiliarValores[resultado * numero_posicoes] = sequencia;
                     $("#bloco"+resultado * numero_posicoes).text(arrayAuxiliarValores[resultado * numero_posicoes]);
