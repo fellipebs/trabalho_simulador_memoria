@@ -12,7 +12,8 @@ function gera_bloco(numero_posicoes, conjuntos){
         $('#n').attr("disabled", true);
 
         $('#controlador').val(1); // Variavel auxiliar para controlar inserções antes do carregamento.
-
+        $('#maximoBlocos').val(parseFloat(memoria)/parseFloat(bloco)); // Variavel auxiliar para controlar inserções antes do carregamento.
+        
         var metodo = $("input[name='fcc']:checked").val(); // Controlando o disable dos buttons 
 
         if(metodo == "fifo"){
@@ -67,7 +68,9 @@ function alimenta_bloco(sequencia){
     var tamanhoMemoria = parseFloat($('#memoria').val());
     var tamanhoBloco = parseFloat($('#bloco').val());
 
-    if(sequencia != "" && $('#controlador').val() == "1"){
+    var tamanhoMaximoBloco = parseFloat($('#maximoBlocos').val()) - 1;
+
+    if(sequencia != "" && $('#controlador').val() == "1" && (sequencia <= tamanhoMaximoBloco && sequencia > -1)){
         var metodo = $("input[name='fcc']:checked").val(); // Pega o método selecionado no radio button
         var conjuntos = $('#n').val(); 
         var numero_posicoes = $('#linha').val();
@@ -187,5 +190,7 @@ function alimenta_bloco(sequencia){
         alert("Preencha a sequência!");
     }else if($('#controlador').val() == "0"){
         alert("Favor carregue a memória antes de inserir blocos!");
+    }else if((sequencia > tamanhoMaximoBloco || sequencia < 0)){
+        alert("Favor digitar blocos entre 0 e "+tamanhoMaximoBloco+"!");
     }
 }
