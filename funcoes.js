@@ -1,56 +1,74 @@
 function gera_bloco(numero_posicoes, conjuntos){
+    var memoria = $('#memoria').val();
+    var bloco = $('#bloco').val();
+    var linha = $('#linha').val();
+    var n = $('#n').val();
+    if(memoria != "" && bloco != "" && linha != "" && n != ""){
+        //travando campos
 
-    $('#controlador').val(1); // Variavel auxiliar para controlar inserções antes do carregamento.
+        $('#memoria').attr("disabled", true);
+        $('#bloco').attr("disabled", true);
+        $('#linha').attr("disabled", true);
+        $('#n').attr("disabled", true);
 
-    var metodo = $("input[name='fcc']:checked").val(); // Controlando o disable dos buttons 
+        $('#controlador').val(1); // Variavel auxiliar para controlar inserções antes do carregamento.
 
-    if(metodo == "fifo"){
-        $('#lru').attr("disabled", true);
-        $('#lfu').attr("disabled", true);
-    }else if(metodo == "lru"){
-        $('#fifo').attr("disabled", true);
-        $('#lfu').attr("disabled", true);
-    }else if(metodo == "lfu"){
-        $('#lru').attr("disabled", true);
-        $('#fifo').attr("disabled", true);
-    }
+        var metodo = $("input[name='fcc']:checked").val(); // Controlando o disable dos buttons 
 
-
-    var html = "";
-    auxLinhas = 0;
-    numero_posicoes = parseFloat(numero_posicoes);
-    conjuntos = parseFloat(conjuntos);
-
-    tamanhoconjuntos = conjuntos/2;
-
-
-    for (var i = 0; i < conjuntos; i++){
-        var arrayAux = [];
-        for(j = 0; j < numero_posicoes; j++){
-            html += "<tr>";
-            html += "<td>Linha "+auxLinhas+"</td>";
-            if(j != 0){
-                html += "<td><span id='bloco"+auxLinhas+"'></span></td>";
-            }else{
-                html += "<td><span id='bloco"+auxLinhas+"'></span><span class='conj' id='conj'>Conjunto "+i+"</span></td>";
-            }
-            
-            html += "</tr>";
-            arrayAux.push(auxLinhas);
-            arrayAuxiliarValores.push(-1);
-            auxLinhas++;
+        if(metodo == "fifo"){
+            $('#lru').attr("disabled", true);
+            $('#lfu').attr("disabled", true);
+        }else if(metodo == "lru"){
+            $('#fifo').attr("disabled", true);
+            $('#lfu').attr("disabled", true);
+        }else if(metodo == "lfu"){
+            $('#lru').attr("disabled", true);
+            $('#fifo').attr("disabled", true);
         }
-        arrayBlocos.push(arrayAux);
+
+
+        var html = "";
+        auxLinhas = 0;
+        numero_posicoes = parseFloat(numero_posicoes);
+        conjuntos = parseFloat(conjuntos);
+
+        tamanhoconjuntos = conjuntos/2;
+
+
+        for (var i = 0; i < conjuntos; i++){
+            var arrayAux = [];
+            for(j = 0; j < numero_posicoes; j++){
+                html += "<tr>";
+                html += "<td>Linha "+auxLinhas+"</td>";
+                if(j != 0){
+                    html += "<td><span id='bloco"+auxLinhas+"'></span></td>";
+                }else{
+                    html += "<td><span id='bloco"+auxLinhas+"'></span><span class='conj' id='conj'>Conjunto "+i+"</span></td>";
+                }
+                
+                html += "</tr>";
+                arrayAux.push(auxLinhas);
+                arrayAuxiliarValores.push(-1);
+                auxLinhas++;
+            }
+            arrayBlocos.push(arrayAux);
+        }
+
+
+        for(var i = 0; i < conjuntos; i++)
+            arrayMarcadorFIFO[i] = 0;
+
+        return $("#conteudo").html(html);
+    }else{
+        alert("Preencha todos os campos corretamente!");
     }
-
-
-    for(var i = 0; i < conjuntos; i++)
-        arrayMarcadorFIFO[i] = 0;
-
-    return $("#conteudo").html(html);
 }
 
 function alimenta_bloco(sequencia){
+
+    var tamanhoMemoria = parseFloat($('#memoria').val());
+    var tamanhoBloco = parseFloat($('#bloco').val());
+    
     if(sequencia != "" && $('#controlador').val() == "1"){
         var metodo = $("input[name='fcc']:checked").val(); // Pega o método selecionado no radio button
         var conjuntos = $('#n').val(); 
