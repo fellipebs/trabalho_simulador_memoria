@@ -1,5 +1,21 @@
 function gera_bloco(numero_posicoes, conjuntos){
 
+    $('#controlador').val(1); // Variavel auxiliar para controlar inserções antes do carregamento.
+
+    var metodo = $("input[name='fcc']:checked").val(); // Controlando o disable dos buttons 
+
+    if(metodo == "fifo"){
+        $('#lru').attr("disabled", true);
+        $('#lfu').attr("disabled", true);
+    }else if(metodo == "lru"){
+        $('#fifo').attr("disabled", true);
+        $('#lfu').attr("disabled", true);
+    }else if(metodo == "lfu"){
+        $('#lru').attr("disabled", true);
+        $('#fifo').attr("disabled", true);
+    }
+
+
     var html = "";
     auxLinhas = 0;
     numero_posicoes = parseFloat(numero_posicoes);
@@ -35,15 +51,17 @@ function gera_bloco(numero_posicoes, conjuntos){
 }
 
 function alimenta_bloco(sequencia){
-    if(sequencia != ""){
-        var metodo = $("input[name='fcc']:checked").val();
-        var conjuntos = $('#n').val();
+    if(sequencia != "" && $('#controlador').val() == "1"){
+        var metodo = $("input[name='fcc']:checked").val(); // Pega o método selecionado no radio button
+        var conjuntos = $('#n').val(); 
         var numero_posicoes = $('#linha').val();
-        sequencia = parseFloat(sequencia);
-        conjuntos = parseFloat(conjuntos);
-        numero_posicoes = parseFloat(numero_posicoes);
+        sequencia = parseFloat(sequencia); // forçando parseFloat para entender como decimal
+        conjuntos = parseFloat(conjuntos); // forçando parseFloat para entender como decimal
+        numero_posicoes = parseFloat(numero_posicoes); // forçando parseFloat para entender como decimal
 
-        if(metodo == "fifo"){
+        if(metodo == "fifo"){ // Implementação FIFO
+
+            // Inicio validação local aonde entrará
             resultado = sequencia % conjuntos;
             var stringLog = sequencia+"%"+conjuntos+" = "+resultado;
 
@@ -51,16 +69,17 @@ function alimenta_bloco(sequencia){
                 $('#logs').html($('#logs').html()+"\n"+stringLog);
             else
                 $('#logs').html(stringLog);
+            //Fim validação
 
 
-            var aux = arrayBlocos[resultado].length;
-            var i = 0;
+            var aux = arrayBlocos[resultado].length; // Array com o número de posições do conjunto
+            var i = 0; // variavel de controle
             while(aux != arrayBlocos[resultado].length + numero_posicoes){
-                if(arrayAuxiliarValores[arrayBlocos[resultado][i]] == -1 && !arrayAuxiliarValores.includes(sequencia)){
+                if(arrayAuxiliarValores[arrayBlocos[resultado][i]] == -1 && !arrayAuxiliarValores.includes(sequencia)){ // Validação para existência do valor
                     arrayAuxiliarValores[arrayBlocos[resultado][i]] = sequencia;
                     for(var j = 0; j < arrayAuxiliarValores.length; j++){
                         if(arrayAuxiliarValores[j] != -1)
-                            $("#bloco"+j).text(arrayAuxiliarValores[j]);
+                            $("#bloco"+j).text(arrayAuxiliarValores[j]); // Remanejando blocos
                     }
                     break;
                 }
@@ -68,12 +87,12 @@ function alimenta_bloco(sequencia){
                 aux++;
             }
 
-            if(aux == arrayBlocos[resultado].length + numero_posicoes  && !arrayAuxiliarValores.includes(sequencia)){
-                var aux = arrayMarcadorFIFO[resultado];
+            if(aux == arrayBlocos[resultado].length + numero_posicoes  && !arrayAuxiliarValores.includes(sequencia)){ // Ele entrará aqui caso o conjunto esteja todo preenchido
+                var aux = arrayMarcadorFIFO[resultado]; // Pegando proxima posição
                 if(aux < numero_posicoes){
                     //inicio do conjunto 
                     var aux2 = 0
-                    for (var i = resultado * numero_posicoes; i < (resultado * numero_posicoes) + numero_posicoes; i++){
+                    for (var i = resultado * numero_posicoes; i < (resultado * numero_posicoes) + numero_posicoes; i++){ // validação para saber o exato numero do bloco (vetor de valores)
                         if(i == (aux + resultado * numero_posicoes)){
                             arrayMarcadorFIFO[resultado] = aux2;
                             arrayAuxiliarValores[i] = sequencia;
@@ -82,6 +101,7 @@ function alimenta_bloco(sequencia){
                         aux2++;
                     }
                 }else{
+                    //Caso o número seja maior que a ultima posição, ocorre essa validação para voltar com o mesmo para 0
                     arrayMarcadorFIFO[resultado] = 0;
                     arrayAuxiliarValores[resultado * numero_posicoes] = sequencia;
                     $("#bloco"+resultado * numero_posicoes).text(arrayAuxiliarValores[resultado * numero_posicoes]);
@@ -89,7 +109,7 @@ function alimenta_bloco(sequencia){
                 arrayMarcadorFIFO[resultado]++;
         }
                
-        }else if(metodo == "lru"){
+        }else if(metodo == "lru"){ // Implementação LRU
             marcaUsoLRU++;
             resultado = sequencia % conjuntos;
             var stringLog = sequencia+"%"+conjuntos+" = "+resultado;
@@ -136,10 +156,12 @@ function alimenta_bloco(sequencia){
 
             }
             
-        }else if(metodo == "lfu"){
+        }else if(metodo == "lfu"){ // Implementação LFU
 
         }
-    }else{
+    }else if(sequencia == ""){
         alert("Preencha a sequência!");
+    }else if($('#controlador').val() == "0"){
+        alert("Favor carregue a memória antes de inserir blocos!");
     }
 }
