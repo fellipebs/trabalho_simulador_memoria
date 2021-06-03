@@ -1,5 +1,21 @@
 function gera_bloco(numero_posicoes, conjuntos){
 
+    $('#controlador').val(1); // Variavel auxiliar para controlar inserções antes do carregamento.
+
+    var metodo = $("input[name='fcc']:checked").val(); // Controlando o disable dos buttons 
+
+    if(metodo == "fifo"){
+        $('#lru').attr("disabled", true);
+        $('#lfu').attr("disabled", true);
+    }else if(metodo == "lru"){
+        $('#fifo').attr("disabled", true);
+        $('#lfu').attr("disabled", true);
+    }else if(metodo == "lfu"){
+        $('#lru').attr("disabled", true);
+        $('#fifo').attr("disabled", true);
+    }
+
+
     var html = "";
     auxLinhas = 0;
     numero_posicoes = parseFloat(numero_posicoes);
@@ -35,7 +51,7 @@ function gera_bloco(numero_posicoes, conjuntos){
 }
 
 function alimenta_bloco(sequencia){
-    if(sequencia != ""){
+    if(sequencia != "" && $('#controlador').val() == "1"){
         var metodo = $("input[name='fcc']:checked").val();
         var conjuntos = $('#n').val();
         var numero_posicoes = $('#linha').val();
@@ -139,7 +155,9 @@ function alimenta_bloco(sequencia){
         }else if(metodo == "lfu"){
 
         }
-    }else{
+    }else if(sequencia == ""){
         alert("Preencha a sequência!");
+    }else if($('#controlador').val() == "0"){
+        alert("Favor carregue a memória antes de inserir blocos!");
     }
 }
