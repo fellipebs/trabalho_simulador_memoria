@@ -110,7 +110,9 @@ function alimenta_bloco(sequencia){
         }
                
         }else if(metodo == "lru"){ // Implementação LRU
-            marcaUsoLRU++;
+            marcaUsoLRU++; // Variavel para controlar o ultimo utilizado
+
+            // Inicio validação local aonde entrará
             resultado = sequencia % conjuntos;
             var stringLog = sequencia+"%"+conjuntos+" = "+resultado;
 
@@ -118,10 +120,12 @@ function alimenta_bloco(sequencia){
                 $('#logs').html($('#logs').html()+"\n"+stringLog);
             else
                 $('#logs').html(stringLog);
-
+            //Fim validação
 
             var aux = arrayBlocos[resultado].length;
             var i = 0;
+
+            //Validação para quando o conjunto ainda não está lotado.
             while(aux != arrayBlocos[resultado].length + numero_posicoes){
                 if(arrayAuxiliarValores[arrayBlocos[resultado][i]] == -1 && !arrayAuxiliarValores.includes(sequencia)){
                     arrayAuxiliarValores[arrayBlocos[resultado][i]] = sequencia;
@@ -140,14 +144,16 @@ function alimenta_bloco(sequencia){
                 aux++;
             }
 
+            // Para quando o conjunto está lotado
             if(aux == arrayBlocos[resultado].length + numero_posicoes && !arrayAuxiliarValores.includes(sequencia)){
-                var arraymenor = [];
+                var arraymenor = []; // Declaração de um vetor auxiliar, para sabermos o menor valor.
                 for (var i = resultado * numero_posicoes; i < (resultado * numero_posicoes) + numero_posicoes; i++){
                     arraymenor.push(arrayMarcadorLRU[arrayAuxiliarValores[i]]);
                 }
 
+                // percorrendo o conjunto
                 for (var i = resultado * numero_posicoes; i < (resultado * numero_posicoes) + numero_posicoes; i++){
-                    if(arrayMarcadorLRU[arrayAuxiliarValores[i]] == Math.min.apply(Math, arraymenor)){
+                    if(arrayMarcadorLRU[arrayAuxiliarValores[i]] == Math.min.apply(Math, arraymenor)){ // caso o valor encontrado seja o menor, faço a substituição
                         arrayAuxiliarValores[i] = sequencia;
                         $("#bloco"+i).text(arrayAuxiliarValores[i]);
                         arrayMarcadorLRU[sequencia] = marcaUsoLRU;
