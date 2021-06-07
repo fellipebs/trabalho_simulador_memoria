@@ -184,7 +184,60 @@ function alimenta_bloco(sequencia){
             }
             
         }else if(metodo == "lfu"){ // Implementação LFU
+            // Inicio validação local aonde entrará
+            resultado = sequencia % tamanho;
+            var stringLog = sequencia+"%"+tamanho+" = "+resultado;
 
+            if($('#logs').html() != "")
+                $('#logs').html($('#logs').html()+"\n"+stringLog);
+            else
+                $('#logs').html(stringLog);
+            //Fim validação
+
+            var aux = arrayBlocos[resultado].length;
+            var i = 0;
+            var auxInsert = 0;
+
+            //Validação para quando o conjunto ainda não está lotado.
+            while(aux != arrayBlocos[resultado].length + n){
+                if(arrayAuxiliarValores[arrayBlocos[resultado][i]] == -1 && !arrayAuxiliarValores.includes(sequencia)){
+                    arrayAuxiliarValores[arrayBlocos[resultado][i]] = sequencia;
+
+                    for(var j = 0; j < arrayAuxiliarValores.length; j++){
+                        if(arrayAuxiliarValores[j] != -1){
+                            $("#bloco"+j).text(arrayAuxiliarValores[j]);
+                            arrayMarcadorLFU[sequencia] = 1;
+                        }
+                    }
+                    break;
+                }else if(arrayAuxiliarValores.includes(sequencia) && auxInsert == 0){
+                    arrayMarcadorLFU[sequencia] += 1;
+                    auxInsert++;
+                }
+                i++;
+                aux++;
+            }
+
+            auxInsert = 0;
+
+            // Para quando o conjunto está lotado
+            if(aux == arrayBlocos[resultado].length + n && !arrayAuxiliarValores.includes(sequencia)){
+                var arraymenor = []; // Declaração de um vetor auxiliar, para sabermos o menor valor.
+                for (var i = resultado * n; i < (resultado * n) + n; i++){
+                    arraymenor.push(arrayMarcadorLFU[arrayAuxiliarValores[i]]);
+                }
+
+                // percorrendo o conjunto
+                for (var i = resultado * n; i < (resultado * n) + n; i++){
+                    if(arrayMarcadorLFU[arrayAuxiliarValores[i]] == Math.min.apply(Math, arraymenor)){ // caso o valor encontrado seja o menor, faço a substituição
+                        arrayAuxiliarValores[i] = sequencia;
+                        $("#bloco"+i).text(arrayAuxiliarValores[i]);
+                        arrayMarcadorLFU[sequencia] = 1;
+                        break;
+                    }
+                }
+
+            }
         }
     }else if(sequencia == ""){
         alert("Preencha a sequência!");
