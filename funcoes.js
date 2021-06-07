@@ -74,7 +74,7 @@ function alimenta_bloco(sequencia){
         var metodo = $("input[name='fcc']:checked").val(); // Pega o método selecionado no radio button
         var conjuntos = $('#n').val(); 
         var numero_posicoes = $('#linha').val();
-        var tamanho = numero_posicoes/conjuntos;
+        var tamanho = Math.round(numero_posicoes/conjuntos);
         sequencia = parseFloat(sequencia); // forçando parseFloat para entender como decimal
         conjuntos = parseFloat(conjuntos); // forçando parseFloat para entender como decimal
         var n = conjuntos;
